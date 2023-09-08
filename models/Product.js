@@ -7,6 +7,7 @@ const productSchema = new Schema({
   image: String,
   stock: Number,
   price: Number,
+  otherProperties: {},
   rating: [],
   category: {
     type: Schema.Types.ObjectId,

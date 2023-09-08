@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
   name: String,
-  description: String,
   image: String,
   products: [
     {
