@@ -2,19 +2,19 @@ const mongoose = require("../dbInitialSetup");
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-  firstname: String,
+  name: String,
   description: String,
-  alchoolVol: Number,
   image: String,
-  type: ["APA", "IPA", "0%", "pilsen", "porter"],
-  size: ["330", "1000", "5000"],
   stock: Number,
   price: Number,
-  rating: Number,
-  sales: Number,
+  rating: [],
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: "Category",
+  },
 });
 
-userSchema.set("toJSON", { virtuals: true });
+productSchema.set("toJSON", { virtuals: true });
 
 const Product = mongoose.model("Product", productSchema);
 

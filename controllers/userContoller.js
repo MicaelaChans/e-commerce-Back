@@ -1,10 +1,15 @@
 const User = require("../models/User");
 
-const userController = {
-  index: async (req, res) => {
-    const users = await User.find();
-    res.json(users);
-  },
-};
+async function index(req, res) {
+  return res.send("Funcionando...");
+}
 
-module.exports = userController;
+async function show(req, res) {
+  const users = await User.find();
+  return res.json(users);
+}
+
+module.exports = {
+  index,
+  show,
+};

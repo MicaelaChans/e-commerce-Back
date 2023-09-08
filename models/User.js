@@ -4,16 +4,17 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   firstname: String,
   lastname: String,
-  age: Number,
   username: String,
   password: String,
   email: String,
-  direction: String,
-  telefone: Number,
-  role: Number,
-  order: { cartId },
-  purchases: [{ cart }],
-  rating: { productId },
+  address: String,
+  phone: Number,
+  orders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Order",
+    },
+  ],
 });
 
 userSchema.set("toJSON", { virtuals: true });

@@ -10,8 +10,6 @@ module.exports = async () => {
       name: faker.name.Name(),
       description: faker.lorem.paragraph(),
       image: faker.internet.avatar(),
-      stock: faker.datatype.number(),
-      price: faker.datatype.number(),
     });
   }
   await Product.insertMany(products);
