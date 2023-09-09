@@ -9,10 +9,10 @@ const productSchema = new Schema({
   price: Number,
   otherProperties: {},
   rating: [],
-  /*category: {
-    type: Schema.Types.ObjectId,
+  category:{
+    type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
-  },*/
+  },
 });
 
 productSchema.set("toJSON", { virtuals: true });
