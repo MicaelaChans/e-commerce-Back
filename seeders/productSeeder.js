@@ -3,7 +3,7 @@ const mongoose = require("../dbInitialSetup");
 //const categorySeeders = require("./categorySeeders");
 
 module.exports = async () => {
-  await mongoose.connection.dropCollection("product");
+ // await mongoose.connection.dropCollection("product");
 
   //const categories = await categorySeeders();
 
