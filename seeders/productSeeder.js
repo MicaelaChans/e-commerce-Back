@@ -1,11 +1,11 @@
 const Product = require("../models/Product");
 const mongoose = require("../dbInitialSetup");
-const categorySeeders = require("./categorySeeders");
+//const categorySeeders = require("./categorySeeders");
 
 module.exports = async () => {
-  //await mongoose.connection.dropCollection("product");
+  await mongoose.connection.dropCollection("product");
 
-  const categories = await categorySeeders();
+  //const categories = await categorySeeders();
 
   const products = [];
   products.push({
@@ -24,7 +24,7 @@ module.exports = async () => {
     },
     stock: 10,
     price: 1200,
-    category: categories[0],
+    category: "Wood",
   });
   products.push({
     name: "Stanford",
@@ -42,7 +42,7 @@ module.exports = async () => {
     },
     stock: 10,
     price: 1400,
-    category: categories[0],
+    category: "Wood",
   });
   products.push({
     name: "C 43",
@@ -60,7 +60,7 @@ module.exports = async () => {
     },
     stock: 10,
     price: 1600,
-    category: categories[0],
+    category: "Wood",
   });
   products.push({
     name: "S 43",
@@ -78,7 +78,7 @@ module.exports = async () => {
     },
     stock: 10,
     price: 1700,
-    category: categories[0],
+    category: "Wood",
   });
   products.push({
     name: "H 43",
@@ -96,7 +96,7 @@ module.exports = async () => {
     },
     stock: 10,
     price: 1400,
-    category: categories[0],
+    category: "Wood",
   });
   products.push({
     name: "TQH 43",
@@ -114,7 +114,7 @@ module.exports = async () => {
     },
     stock: 10,
     price: 2000,
-    category: categories[0],
+    category: "Wood",
   });
   products.push({
     name: "IQH 43",
@@ -132,7 +132,7 @@ module.exports = async () => {
     },
     stock: 10,
     price: 2500,
-    category: categories[0],
+    category: "Wood",
   });
 
   products.push({
@@ -151,7 +151,7 @@ module.exports = async () => {
       eficiency: "93%",
       consumption: "10hs",
     },
-    category: categories[1],
+    category: "Pellet",
   });
   products.push({
     name: "Loop",
@@ -169,7 +169,7 @@ module.exports = async () => {
       eficiency: "90.4%",
       consumption: "35hs",
     },
-    category: categories[1],
+    category: "Pellet",
   });
   products.push({
     name: "Halo",
@@ -187,7 +187,7 @@ module.exports = async () => {
       eficiency: "90.9%",
       consumption: "23hs",
     },
-    category: categories[1],
+    category: "Pellet",
   });
   products.push({
     name: "Alea",
@@ -205,7 +205,7 @@ module.exports = async () => {
       eficiency: "90%",
       consumption: "24hs",
     },
-    category: categories[1],
+    category: "Pellet",
   });
   products.push({
     name: "Ego",
@@ -223,8 +223,9 @@ module.exports = async () => {
       eficiency: "91.1%",
       consumption: "29hs",
     },
-    category: categories[1],
+    category: "Pellet",
   });
+
   products.push({
     name: "Woodshed",
     description: "Ideal tool for organizing the stolve´s wood",
@@ -237,7 +238,7 @@ module.exports = async () => {
       width: "750mm",
       depth: "433mm",
     },
-    category: categories[2],
+    category: "Accessories",
   });
   products.push({
     name: "Pellets",
@@ -249,7 +250,7 @@ module.exports = async () => {
     otherProperties: {
       weight: "15kg",
     },
-    category: categories[2],
+    category: "Accessories",
   });
 
   await Product.insertMany(products);

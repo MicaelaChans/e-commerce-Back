@@ -9,10 +9,10 @@ const productSchema = new Schema({
   price: Number,
   otherProperties: {},
   rating: [],
-  category: {
+  /*category: {
     type: Schema.Types.ObjectId,
     ref: "Category",
-  },
+  },*/
 });
 
 productSchema.set("toJSON", { virtuals: true });

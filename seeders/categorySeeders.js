@@ -2,7 +2,7 @@ const Category = require("../models/Category");
 const mongoose = require("../dbInitialSetup");
 
 module.exports = async () => {
-  //await mongoose.connection.dropCollection("category");
+  await mongoose.connection.dropCollection("category");
 
   const categories = [];
   categories.push({
