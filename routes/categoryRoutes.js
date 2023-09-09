@@ -4,4 +4,5 @@ const categoryRouter = express.Router();
 
 categoryRouter.get("/", categoryController.index);
 
+
 module.exports = categoryRouter;
