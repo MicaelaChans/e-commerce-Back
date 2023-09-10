@@ -2,7 +2,7 @@ require("dotenv").config();
 require("./dbInitialSetup");
 const express = require("express");
 const categorySeeders = require("./seeders/categorySeeders");
-const productSeeder =  require("./seeders/productSeeder");
+const productSeeder = require("./seeders/productSeeder");
 const routes = require("./routes");
 const app = express();
 const port = process.env.APP_PORT || 8001;
