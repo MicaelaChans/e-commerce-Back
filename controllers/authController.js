@@ -24,6 +24,7 @@ const authController = {
     return res.json({ token });
   },
   register: async (req,res) => {
+    
     return res.json("asdas")
   }
 };
