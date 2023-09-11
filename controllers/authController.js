@@ -21,8 +21,11 @@ const authController = {
       process.env.JWT_SECRET
     );
     //Respondo con el token a la llamada
-    res.json({ token });
+    return res.json({ token });
   },
+  register: async (req,res) => {
+    return res.json("asdas")
+  }
 };
 
 module.exports = authController;

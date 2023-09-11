@@ -6,11 +6,6 @@ const productController = {
     const products = await Product.find().populate("category");
     return res.json(products);
   },
-<<<<<<< Updated upstream
-  show: async (req, res) => {
-    const product = await Product.findById(req.params.id);
-    return res.json(product);
-=======
   findByCat: async (req, res) => {
     try {
       const paramsCat = req.params.category;
@@ -28,7 +23,6 @@ const productController = {
   },
   show: (req, res) => {
     console.log("llegamos a show");
->>>>>>> Stashed changes
   },
 };
 
