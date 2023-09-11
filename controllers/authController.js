@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 const authController = {
   tokens: async (req, res) => {
@@ -24,8 +25,24 @@ const authController = {
     return res.json({ token });
   },
   register: async (req,res) => {
+    const firstname = req.body.firstname; 
+    const lastname = req.body.lastname; 
+    const email = req.body.email; 
+    const phone = req.body.phone; 
+    const password = await bcrypt.hash(req.body.password, 10);  
+    const user = await User.create({
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      phone: phone,
+      password: password,     
+    });  
+    if(user){
+      return res.json("usuario creado")
+    }else{
+      return res.json("error en la creacion del usuario")
+    }
     
-    return res.json("asdas")
   }
 };
 
