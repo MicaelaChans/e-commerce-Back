@@ -32,9 +32,9 @@ const authController = {
     const checkEmail = await User.findOne({email:email});
     const checkPhone = await User.findOne({phone:phone});
     if(checkEmail){
-      return res.json("ya existe usuario con este email");
+      return res.json("existent email already");
     } else if(checkPhone){
-      return res.json("ya existe usuario con este telefono");
+      return res.json("existent phone already");
     } else{
       const user = await User.create({
         firstname: firstname,
