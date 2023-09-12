@@ -5,6 +5,10 @@ const categoryController = {
     const categories = await Category.find();
     res.json(categories);
   },
+  show: async (req, res) => {
+    const category = await Category.findById(req.params.id).populate("products");
+    return res.json(category);
+  },
 };
 
 module.exports = categoryController;
