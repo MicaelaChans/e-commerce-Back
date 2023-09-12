@@ -23,6 +23,7 @@ const authController = {
     //Respondo con el token a la llamada
     return res.json({ token });
   },
+  
   register: async (req,res) => {
     const firstname = req.body.firstname; 
     const lastname = req.body.lastname; 
