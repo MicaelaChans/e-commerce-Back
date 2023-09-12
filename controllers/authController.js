@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 
 const authController = {
   tokens: async (req, res) => {
-    console.log(req.body);
     //Verificamos credenciales
     //Verificar usuario en DB
     const user = await User.findOne({ username: req.body.username });
@@ -30,19 +29,26 @@ const authController = {
     const email = req.body.email; 
     const phone = req.body.phone; 
     const password = await bcrypt.hash(req.body.password, 10);  
-    const user = await User.create({
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
-      phone: phone,
-      password: password,     
-    });  
-    if(user){
-      return res.json("usuario creado")
-    }else{
-      return res.json("error en la creacion del usuario")
-    }
-    
+    const checkEmail = await User.findOne({email:email});
+    const checkPhone = await User.findOne({phone:phone});
+    if(checkEmail){
+      return res.json("ya existe usuario con este email");
+    } else if(checkPhone){
+      return res.json("ya existe usuario con este telefono");
+    } else{
+      const user = await User.create({
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        phone: phone,
+        password: password,     
+      });  
+      if(user){
+        return res.json("usuario creado")
+      }else{
+        return res.json("error en la creacion del usuario")
+      }
+    }   
   }
 };
 
