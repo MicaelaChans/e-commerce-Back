@@ -292,6 +292,53 @@ async function productSeeder() {
   products.push(pellets);
   categories[2].products.push(pellets.id);
   await categories[2].save();
+  const charcoal = new Product({
+    name: "Charcoal",
+    description:
+      "Restaurant quality lumpwood charcoal, made form superior hardwoods to deliver high intensity heat.",
+    image:
+      "https://cdn.discordapp.com/attachments/852697946738130954/1151873466933465209/Captura_de_pantalla_2023-09-14_102023.png",
+    stock: 10,
+    price: 21,
+    otherProperties: {
+      weight: "10kg",
+    },
+    category: categories[2],
+  });
+  products.push(charcoal);
+  categories[2].products.push(charcoal.id);
+  await categories[2].save();
+  const logs = new Product({
+    name: "Kiln dried hardwood logs",
+    description:
+      "Hardwood logs sourced from sustainable British woodland, they are cut to +/- 25 cm and offer an average moisture content of 20% giving a clean burn with high heat production.",
+    image:
+      "https://cdn.discordapp.com/attachments/852697946738130954/1151873467600359495/Captura_de_pantalla_2023-09-14_101913.png",
+    stock: 10,
+    price: 10,
+    otherProperties: {
+      weight: "2kg",
+    },
+    category: categories[2],
+  });
+  products.push(logs);
+  categories[2].products.push(logs.id);
+  await categories[2].save();
+  const toolsSet = new Product({
+    name: "3-Piece wood stove accessory set",
+    description: "Contains shovel, clamp and brush. Includes support",
+    image:
+      "https://cdn.discordapp.com/attachments/852697946738130954/1151873467340292186/productos34_1162.png",
+    stock: 10,
+    price: 21,
+    otherProperties: {
+      height: "720mm",
+    },
+    category: categories[2],
+  });
+  products.push(toolsSet);
+  categories[2].products.push(toolsSet.id);
+  await categories[2].save();
   console.log("Product Seeder complete");
   return await Product.insertMany(products);
 }
