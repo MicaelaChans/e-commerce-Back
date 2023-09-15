@@ -23,34 +23,39 @@ const authController = {
     //Respondo con el token a la llamada
     return res.json({ token });
   },
-  
-  register: async (req,res) => {
-    const firstname = req.body.firstname; 
-    const lastname = req.body.lastname; 
-    const email = req.body.email; 
-    const phone = req.body.phone; 
-    const password = await bcrypt.hash(req.body.password, 10);  
-    const checkEmail = await User.findOne({email:email});
-    const checkPhone = await User.findOne({phone:phone});
-    if(checkEmail){
+
+  register: async (req, res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    const password = await bcrypt.hash(req.body.password, 10);
+    const checkEmail = await User.findOne({ email: email });
+    const checkPhone = await User.findOne({ phone: phone });
+    if (checkEmail) {
       return res.json("existent email already");
-    } else if(checkPhone){
+    } else if (checkPhone) {
       return res.json("existent phone already");
-    } else{
+    } else {
       const user = await User.create({
         firstname: firstname,
         lastname: lastname,
         email: email,
         phone: phone,
-        password: password,     
-      });  
-      if(user){
-        return res.json("usuario creado")
-      }else{
-        return res.json("error en la creacion del usuario")
+        password: password,
+      });
+      if (user) {
+        return res.json("usuario creado");
+      } else {
+        return res.json("error en la creacion del usuario");
       }
-    }   
-  }
+    }
+  },
+
+  logout: async (req, res) => {
+    res.json("Entraste en Login (backend)");
+    return console.log("Usuario hizo logout!");
+  },
 };
 
 module.exports = authController;
