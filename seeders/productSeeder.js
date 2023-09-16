@@ -30,7 +30,7 @@ async function productSeeder() {
   categories[0].products.push(harmony.id);
   await categories[0].save();
   const stanford = new Product({
-    name: "Stanford",
+    name: "Harmony B43",
     description:
       "With their timeless design and ease of use, the Stanford stoves will bring you comfort and satisfaction for many years. Fully built in cast iron, the Stanford models feature a side door and temperature control thermostat.",
     image:
@@ -51,7 +51,7 @@ async function productSeeder() {
   categories[0].products.push(stanford.id);
   await categories[0].save();
   const c43 = new Product({
-    name: "C 43",
+    name: "Harmony C43",
     description:
       "The C line incorporates our proprietary stoves Woodbox® Technology. It is entirely built ​​in cast iron, which gives it a timeless look. With clean glass and remote control, model C is configured as a complete and harmonious design.",
     image:
@@ -72,7 +72,7 @@ async function productSeeder() {
   categories[0].products.push(c43.id);
   await categories[0].save();
   const s43 = new Product({
-    name: "S 43",
+    name: "Harmony S43",
     description:
       "The S-series combines the timeless class of a Stanford with patented Woodbox® Technology  and an optional remote control.",
     image:
@@ -93,7 +93,7 @@ async function productSeeder() {
   categories[0].products.push(s43.id);
   await categories[0].save();
   const h43 = new Product({
-    name: "H 43",
+    name: "Harmony H43",
     description:
       "Featuring our advanced Woodbox® Combustion Technology, the H models bring together the rustic charm of a traditionally styled cast iron stove and the most advanced combustion technology, with an optional remote control.",
     image:
@@ -113,8 +113,8 @@ async function productSeeder() {
   products.push(h43);
   categories[0].products.push(h43.id);
   await categories[0].save();
-  const tq43 = new Product({
-    name: "TQH 43",
+  const hp43 = new Product({
+    name: "Harmony P43",
     description:
       "Flexibility is central to the TQ / TQH Concept. Each model is offered with a choice of four stands, all of which rotate 360 degrees. This allows you to enjoy the comfort and warmth of the fire from all angles of the room. There is also a simple rotational kit available, which allows your TQ stove to rotate atop any stand of your own creation. The TQH models feature a side door for a convenient wood loading. The TQ / TQH line features our exclusive Woodbox® combustion technology, for high performance and optimum comfort. An optional remote control is available for added convenience if desired.",
     image:
@@ -131,15 +131,15 @@ async function productSeeder() {
     price: 2000,
     category: categories[0],
   });
-  products.push(tq43);
-  categories[0].products.push(tq43.id);
+  products.push(hp43);
+  categories[0].products.push(hp43.id);
   await categories[0].save();
-  const iq43 = new Product({
-    name: "IQH 43",
+  const box1002 = new Product({
+    name: "Box 1002 Wall",
     description:
       "The Nestor Martin fireplace inserts bring extraordinary warmth into your room. With their clean lines and contemporary feel, they are a distinguished piece of furniture that is harmoniously integrated into the heart of your home. In addition to the soft radiant heat, Nestor Martin inserts allow for channeling the heat to other areas in the house, by means of their integrated blowers and two hot air outlets. A safety system that automatically shuts down the ventilation upon opening the door prevents the fan from drawing in any ashes and spreading them into the room. The «IQH» range of fireplace inserts, with its vertical configuration, is a heating element that integrates harmoniously in the heart of your home.",
     image:
-      "https://media.discordapp.net/attachments/834507105087782992/1149765106650062888/Nestor-Martin-IQH-43-3-sided-250-mm-frame.png?width=545&height=675",
+      "https://www.scan-stoves.com/sites/scan-importers/files/products/Scan%201005%20Box%20VE%20%20prod%201%20Item.png",
     otherProperties: {
       height: "848mm",
       width: "682mm",
@@ -152,8 +152,50 @@ async function productSeeder() {
     price: 2500,
     category: categories[0],
   });
-  products.push(iq43);
-  categories[0].products.push(iq43.id);
+  products.push(box1002);
+  categories[0].products.push(box1002.id);
+  await categories[0].save();
+  const box1003 = new Product({
+    name: "Box 1003 Wall",
+    description:
+      "Create your wood stove from a variety of combinations: version with pyres of different sizes or without pyres, with or without bases! Personalize your Scan 1003 by adjusting the modules according to your interior, your desires and your needs. This designer wood stove combines aesthetics and practicality. The pyres initially intended for the storage of your logs were also thought of as decorative elements. Frame, books, objects will be welcome.",
+    image:
+      "https://www.scan-stoves.com/sites/scan-importers/files/products/Scan%201003%20Box%20CS%20prod%202%20Item.png",
+    stock: 10,
+    price: 950,
+    otherProperties: {
+      height: "572mm",
+      width: "649mm",
+      depth: "479mm",
+      nominalPower: "11.5",
+      eficiency: "96%",
+      consumption: "12hs",
+    },
+    category: categories[0],
+  });
+  products.push(box1003);
+  categories[0].products.push(box1003.id);
+  await categories[0].save();
+  const box1004 = new Product({
+    name: "Box 1004 Wall",
+    description:
+      "Create your wood stove from a variety of combinations: version with pyres of different sizes or without pyres, with or without bases! Personalize your Scan 1003 by adjusting the modules according to your interior, your desires and your needs. This designer wood stove combines aesthetics and practicality. The pyres initially intended for the storage of your logs were also thought of as decorative elements. Frame, books, objects will be welcome.",
+    image:
+      "https://www.scan-stoves.com/sites/scan-importers/files/products/Scan%201003%20Box%20wall%20prod%201%20Item.png",
+    stock: 10,
+    price: 750,
+    otherProperties: {
+      height: "432mm",
+      width: "549mm",
+      depth: "379mm",
+      nominalPower: "11",
+      eficiency: "90%",
+      consumption: "9hs",
+    },
+    category: categories[0],
+  });
+  products.push(box1004);
+  categories[0].products.push(box1004.id);
   await categories[0].save();
   const deco = new Product({
     name: "Decò",
