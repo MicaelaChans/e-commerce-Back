@@ -13,6 +13,10 @@ const productSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
   },
+  orders: [{
+    type: Schema.Types.ObjectId,
+    ref: "Order",
+  }],
 });
 
 productSchema.set("toJSON", { virtuals: true });

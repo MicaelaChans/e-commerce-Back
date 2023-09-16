@@ -1,11 +1,13 @@
 const Product = require("../models/Product");
 const mongoose = require("../dbInitialSetup");
 const categorySeeders = require("./categorySeeders");
+const orderSeeders = require("./orderSeeders");
 
 async function productSeeder() {
   await Product.collection.drop();
 
   const categories = await categorySeeders();
+  const orders = await orderSeeders();
 
   const products = [];
   const harmony = new Product({
@@ -25,10 +27,13 @@ async function productSeeder() {
     stock: 10,
     price: 1200,
     category: categories[0],
+    orders: [orders[0]]
   });
   products.push(harmony);
   categories[0].products.push(harmony.id);
   await categories[0].save();
+  orders[0].products.push(harmony.id);
+  await orders[0].save();
   const stanford = new Product({
     name: "Harmony B43",
     description:
@@ -46,10 +51,13 @@ async function productSeeder() {
     stock: 10,
     price: 1400,
     category: categories[0],
+    orders: [orders[0]]
   });
   products.push(stanford);
   categories[0].products.push(stanford.id);
   await categories[0].save();
+  orders[0].products.push(stanford.id);
+  await orders[0].save();
   const c43 = new Product({
     name: "Harmony C43",
     description:
@@ -70,6 +78,7 @@ async function productSeeder() {
   });
   products.push(c43);
   categories[0].products.push(c43.id);
+  
   await categories[0].save();
   const s43 = new Product({
     name: "Harmony S43",
@@ -435,7 +444,7 @@ async function productSeeder() {
   categories[2].products.push(charcoal.id);
   await categories[2].save();
   const logs = new Product({
-    name: "Kiln dried hardwood logs",
+    name: "Kiln hardwood logs",
     description:
       "Hardwood logs sourced from sustainable British woodland, they are cut to +/- 25 cm and offer an average moisture content of 20% giving a clean burn with high heat production.",
     image:
@@ -451,7 +460,7 @@ async function productSeeder() {
   categories[2].products.push(logs.id);
   await categories[2].save();
   const toolsSet = new Product({
-    name: "3-Piece wood stove accessory set",
+    name: "Wood stove set",
     description: "Contains shovel, clamp and brush. Includes support",
     image:
       "https://cdn.discordapp.com/attachments/852697946738130954/1151873467340292186/productos34_1162.png",
