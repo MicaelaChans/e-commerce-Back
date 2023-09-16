@@ -197,8 +197,8 @@ async function productSeeder() {
   products.push(box1004);
   categories[0].products.push(box1004.id);
   await categories[0].save();
-  const deco = new Product({
-    name: "Decò",
+  const decoA1 = new Product({
+    name: "Deco A1",
     description:
       "Classic-style pellet stove, with cladding and firebox entirely made of cast iron in Black. Sealed structure and intelligent combustion management with Maestro+ technology.",
     image:
@@ -215,11 +215,11 @@ async function productSeeder() {
     },
     category: categories[1],
   });
-  products.push(deco);
-  categories[1].products.push(deco.id);
+  products.push(decoA1);
+  categories[1].products.push(decoA1.id);
   await categories[1].save();
-  const loop = new Product({
-    name: "Loop",
+  const decoB2 = new Product({
+    name: "Deco B2",
     description:
       "Loop is an oval shaped air stove, with a sealed structure and just over one metre high. The top and front are made of cast iron, whereas the sides are made of Black painted steel. Heat diffusion is optimal, thanks to the ventilation grilles on the top, the front and also on the side panels. The top slides on guide rails to load the pellet hopper more easily.",
     image:
@@ -236,11 +236,11 @@ async function productSeeder() {
     },
     category: categories[1],
   });
-  products.push(loop);
-  categories[1].products.push(loop.id);
+  products.push(decoB2);
+  categories[1].products.push(decoB2.id);
   await categories[1].save();
-  const halo = new Product({
-    name: "Halo",
+  const decoH15 = new Product({
+    name: "Deco H15",
     description:
       "Forced ventilation pellet stoves, made in black steel with a coloured front panel (Aluminium, Silver, Dark, Bordeaux). Brand new firebox, which is deeper and higher and follows the natural movement of the flame. Particularly suitable for corner installation",
     image:
@@ -257,11 +257,11 @@ async function productSeeder() {
     },
     category: categories[1],
   });
-  products.push(halo);
-  categories[1].products.push(halo.id);
+  products.push(decoH15);
+  categories[1].products.push(decoH15.id);
   await categories[1].save();
-  const alea = new Product({
-    name: "Alea",
+  const alea1012 = new Product({
+    name: "Alea 1012",
     description:
       'ECONOMICAL, AIRTIGHT SLIM PELLET STOVE WITH A DEPTH OF 28 CM Slim format pellet stove, which is part of MCZ new "Easy" line, a full range of pellet stoves offering basic finishes and electronics at a fair price. Alea is a ventilated sealed stove with a reduced depth (less than 28 cm), ideal for corridors and confined spaces. It is made with cast iron door, White, Silver, Black or Bordeaux steel cladding. Cast iron brazier and firebox back panel.',
     image:
@@ -278,11 +278,11 @@ async function productSeeder() {
     },
     category: categories[1],
   });
-  products.push(alea);
-  categories[1].products.push(alea.id);
+  products.push(alea1012);
+  categories[1].products.push(alea1012.id);
   await categories[1].save();
-  const ego = new Product({
-    name: "Ego",
+  const alea1014 = new Product({
+    name: "Alea 1014",
     description:
       "STEEL PELLET STOVE, AVAILABLE IN 8 VERSIONS (AIR, DUCTED, HYDRO AND WITH CORE TECHNOLOGY) Pellet stove made with a steel structure, cast iron top and painted steel sides color White, Dark, Silver, Bordeaux. New 2021 restyling, which enhances the aesthetic performance of the flame. Thanks to the Maestro+ technology, the stove can be controlled directly from a smartphone, via a specific App, which provides full control either at home or away, by connecting via the home internet network (router) or directly via Bluetooth. An innovative retractable digital control panel fitted on the top is also available as standard",
     image:
@@ -299,8 +299,92 @@ async function productSeeder() {
     },
     category: categories[1],
   });
-  products.push(ego);
-  categories[1].products.push(ego.id);
+  products.push(alea1014);
+  categories[1].products.push(alea1014.id);
+  await categories[1].save();
+  const aduroP1 = new Product({
+    name: "Aduro P1",
+    description:
+      "Aduro P1 is a classic round pellet stove in Scandinavian style. A large, stylish glass door leads your eyes right into the flames. The integrated WiFi module makes it easy and simple to control the stove, no matter where you are in the world. The stove can work on 5 levels of which level 1 is a silent level with no fan",
+    image:
+      " https://www.adurofire.com/typo3temp/assets/_processed_/8/f/csm_aduro-p1-round-pellet-stove-withmatt-surface_01_a7c9377bf6.png",
+    stock: 10,
+    price: 2500,
+    otherProperties: {
+      height: "1100mm",
+      width: "533mm",
+      depth: "545mm",
+      nominalPower: "11.7",
+      eficiency: "95.1%",
+      consumption: "19hs",
+    },
+    category: categories[1],
+  });
+  products.push(aduroP1);
+  categories[1].products.push(aduroP1.id);
+  await categories[1].save();
+  const aduroP13 = new Product({
+    name: "Aduro P1.3",
+    description:
+      "Aduro P1.3 is a round pellet stove with a Scandinavian design. A large, elegant glass door and black glass sides give the stove an exclusive look. The integrated Wi-Fi module makes it easy to control the stove, no matter where you are in the world. The stove can be used on 5 different levels of which level 1 is a low noise level with no fan",
+    image:
+      " https://www.adurofire.com/typo3temp/assets/_processed_/4/9/csm_aduro-p1-3-round-pellet-stove-with-black-glass-sides_01_0545dab144.png",
+    stock: 10,
+    price: 2200,
+    otherProperties: {
+      height: "1100mm",
+      width: "533mm",
+      depth: "545mm",
+      nominalPower: "10.7",
+      eficiency: "92%",
+      consumption: "17hs",
+    },
+    category: categories[1],
+  });
+  products.push(aduroP13);
+  categories[1].products.push(aduroP13.id);
+  await categories[1].save();
+  const aduroP14 = new Product({
+    name: "Aduro P1.4",
+    description:
+      "Aduro P1.4 is a round pellet stove in Scandinavian design. The stove has white glass sides that give the stove a harmonious look in contrast to the stove's black glass door. With the integrated Wi-Fi module, you can operate the stove no matter where you are. You can use the stove at 5 different levels of which level 1 is quiet and runs with no fan.",
+    image:
+      " https://www.adurofire.com/typo3temp/assets/_processed_/f/9/csm_aduro-p1-4-round-pellet-stove-with-white-glass-sides_01_80b032ab41.png",
+    stock: 10,
+    price: 2300,
+    otherProperties: {
+      height: "1100mm",
+      width: "533mm",
+      depth: "545mm",
+      nominalPower: "12.7",
+      eficiency: "94%",
+      consumption: "19hs",
+    },
+    category: categories[1],
+  });
+  products.push(aduroP14);
+  categories[1].products.push(aduroP14.id);
+  await categories[1].save();
+  const aduroP2 = new Product({
+    name: "Aduro P2",
+    description:
+      "Simple and cubic design with a separate WiFi module that makes the stove user-friendly. Turn on the heat on your way home from work or a holiday so it is warm before you come home. In Aduro P2, the fan is replaced by natural convection, just like a regular wood burning stove, resulting in a more silent operation. Special for this stove is also the pellet-tank, which is easily filled up through a drawer on the side of the stove.",
+    image:
+      "  https://www.adurofire.com/typo3temp/assets/_processed_/8/1/csm_Modern-pellet-stove-with-side-glass_02_013a40b54f.png",
+    stock: 10,
+    price: 2600,
+    otherProperties: {
+      height: "1267mm",
+      width: "493mm",
+      depth: "445mm",     
+      nominalPower: "13.7",
+      eficiency: "96%",
+      consumption: "21hs",
+    },
+    category: categories[1],
+  });
+  products.push(aduroP2);
+  categories[1].products.push(aduroP2.id);
   await categories[1].save();
   const woodshet = new Product({
     name: "Woodshed",
