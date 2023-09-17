@@ -27,13 +27,15 @@ async function productSeeder() {
     stock: 10,
     price: 1200,
     category: categories[0],
-    orders: [orders[0]]
+    orders: [orders[0],orders[1]]
   });
   products.push(harmony);
   categories[0].products.push(harmony.id);
   await categories[0].save();
   orders[0].products.push(harmony.id);
   await orders[0].save();
+  orders[1].products.push(harmony.id);
+  await orders[1].save();
   const stanford = new Product({
     name: "Harmony B43",
     description:

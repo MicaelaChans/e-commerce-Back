@@ -5,7 +5,7 @@ async function index(req, res) {
 }
 
 async function show(req, res) {
-  const users = await User.find();
+  const users = await User.find().populate("orders");
   return res.json(users);
 }
 

@@ -3,7 +3,7 @@ const userController = require("../controllers/userContoller");
 const userRouter = express.Router();
 const { expressjwt: checkJwt } = require("express-jwt");
 
-userRouter.get("/", userController.index);
+//userRouter.get("/", userController.index);
 
 userRouter.get(
   "/",

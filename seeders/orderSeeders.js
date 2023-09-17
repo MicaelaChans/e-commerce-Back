@@ -8,14 +8,22 @@ async function orderSeeders() {
   const users = await userSeeders();
 
   const orders = [];
-  const order = new Order({
+  const order1 = new Order({
     state: "Pagado",
     user: users[0],
   });
-
-  orders.push(order);
-  users[0].orders.push(order.id);
+  orders.push(order1);
+  users[0].orders.push(order1.id);
   await users[0].save();
+  const order2 = new Order({
+    state: "Pagado",
+    user: users[0],
+  });
+  orders.push(order2);
+  users[0].orders.push(order2.id);
+  await users[0].save();
+
+  
   
   console.log("Order Seeder complete");
   return await Order.insertMany(orders);
