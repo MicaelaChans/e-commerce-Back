@@ -10,5 +10,10 @@ userRouter.get(
   //checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   userController.show
 );
+userRouter.get(
+  "/:id/orders",
+  //checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
+  userController.showOrders
+);
 
 module.exports = userRouter;
