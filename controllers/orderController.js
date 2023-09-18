@@ -22,6 +22,7 @@ const orderController = {
       prod.orders.push(order); 
       prod.save();  
     }
+    order.state = "Not Payed"
     order.save(); 
     user.orders.push(order);
     user.save();
