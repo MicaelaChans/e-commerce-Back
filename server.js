@@ -2,6 +2,7 @@ require("dotenv").config();
 require("./dbInitialSetup");
 const express = require("express");
 const productSeeder = require("./seeders/productSeeder");
+const adminSeeder = require("./seeders/adminSeeders");
 const routes = require("./routes");
 const app = express();
 const port = process.env.APP_PORT || 8001;
@@ -13,5 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 
 routes(app);
 //productSeeder();
+//adminSeeder();
 
 app.listen(port, () => console.log("Listening on: http://localhost:" + port));
