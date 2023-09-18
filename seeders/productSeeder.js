@@ -27,7 +27,7 @@ async function productSeeder() {
     stock: 10,
     price: 1200,
     category: categories[0],
-    orders: [orders[0],orders[1]]
+    orders: [orders[0], orders[1]],
   });
   products.push(harmony);
   categories[0].products.push(harmony.id);
@@ -53,7 +53,7 @@ async function productSeeder() {
     stock: 10,
     price: 1400,
     category: categories[0],
-    orders: [orders[0]]
+    orders: [orders[0]],
   });
   products.push(stanford);
   categories[0].products.push(stanford.id);
@@ -80,7 +80,7 @@ async function productSeeder() {
   });
   products.push(c43);
   categories[0].products.push(c43.id);
-  
+
   await categories[0].save();
   const s43 = new Product({
     name: "Harmony S43",
@@ -271,8 +271,8 @@ async function productSeeder() {
   products.push(decoH15);
   categories[1].products.push(decoH15.id);
   await categories[1].save();
-  const alea1012 = new Product({
-    name: "Alea 1012",
+  const deco1012 = new Product({
+    name: "Deco 1012",
     description:
       'ECONOMICAL, AIRTIGHT SLIM PELLET STOVE WITH A DEPTH OF 28 CM Slim format pellet stove, which is part of MCZ new "Easy" line, a full range of pellet stoves offering basic finishes and electronics at a fair price. Alea is a ventilated sealed stove with a reduced depth (less than 28 cm), ideal for corridors and confined spaces. It is made with cast iron door, White, Silver, Black or Bordeaux steel cladding. Cast iron brazier and firebox back panel.',
     image:
@@ -289,11 +289,11 @@ async function productSeeder() {
     },
     category: categories[1],
   });
-  products.push(alea1012);
-  categories[1].products.push(alea1012.id);
+  products.push(deco1012);
+  categories[1].products.push(deco1012.id);
   await categories[1].save();
-  const alea1014 = new Product({
-    name: "Alea 1014",
+  const aduro1014 = new Product({
+    name: "Aduro 1014",
     description:
       "STEEL PELLET STOVE, AVAILABLE IN 8 VERSIONS (AIR, DUCTED, HYDRO AND WITH CORE TECHNOLOGY) Pellet stove made with a steel structure, cast iron top and painted steel sides color White, Dark, Silver, Bordeaux. New 2021 restyling, which enhances the aesthetic performance of the flame. Thanks to the Maestro+ technology, the stove can be controlled directly from a smartphone, via a specific App, which provides full control either at home or away, by connecting via the home internet network (router) or directly via Bluetooth. An innovative retractable digital control panel fitted on the top is also available as standard",
     image:
@@ -310,8 +310,8 @@ async function productSeeder() {
     },
     category: categories[1],
   });
-  products.push(alea1014);
-  categories[1].products.push(alea1014.id);
+  products.push(aduro1014);
+  categories[1].products.push(aduro1014.id);
   await categories[1].save();
   const aduroP1 = new Product({
     name: "Aduro P1",
@@ -387,7 +387,7 @@ async function productSeeder() {
     otherProperties: {
       height: "1267mm",
       width: "493mm",
-      depth: "445mm",     
+      depth: "445mm",
       nominalPower: "13.7",
       eficiency: "96%",
       consumption: "21hs",
