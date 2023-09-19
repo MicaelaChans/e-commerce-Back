@@ -53,11 +53,6 @@ const adminController = {
       console.log("Error al eliminar admin", error);
     }
   },
-
-  logout: async (req, res) => {
-    res.json("Entraste en Login (backend)");
-    return console.log("Usuario hizo logout!");
-  },
 };
 
 module.exports = adminController;

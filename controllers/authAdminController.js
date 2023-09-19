@@ -19,7 +19,7 @@ const authAdminController = {
     if (!admin) return res.status(401).json({ error: "Wrong credentials..." });
 
     //Verificar contraseña (la contraseña en db hace match con la recibida)
-    const validatePassword = admin.password; // await bcrypt.compare(password, user.password);
+    const validatePassword = admin.password; // await bcrypt.compare(password, admin.password);
 
     if (!validatePassword)
       return res.status(401).json({ error: "Wrong credentials..." });
