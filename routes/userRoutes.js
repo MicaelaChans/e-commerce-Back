@@ -16,4 +16,7 @@ router.get(
   userController.showOrders
 );
 
+router.patch("/:id", userController.update);
+router.delete("/:id", userController.destroy);
+
 module.exports = router;

@@ -1,21 +1,32 @@
 const User = require("../models/User");
 
-async function index(req, res) {
-  return res.send("Funcionando...");
-}
+const userController = {
+  index: async (req, res) => {
+    return res.send("Funcionando...");
+  },
 
-async function show(req, res) {
-  const users = await User.find().populate("orders");
-  return res.json(users);
-}
-async function showOrders(req, res) {
-  const id = req.params.id;
-  const user = await User.findById(id);
-  return res.json(user);
-}
+  show: async (req, res) => {
+    const users = await User.find().populate("orders");
+    return res.json(users);
+  },
 
-module.exports = {
-  index,
-  show,
-  showOrders
+  showOrders: async (req, res) => {
+    const id = req.params.id;
+    const user = await User.findById(id);
+    return res.json(user);
+  },
+
+  update: async (req, res) => {},
+
+  destroy: async (req, res) => {
+    try {
+      const userId = req.body.userId;
+      await User.findByIdAndRemove(userId);
+      return res.json("User borrado");
+    } catch (error) {
+      console.log("Error al eliminar user", error);
+    }
+  },
 };
+
+module.exports = userController;
