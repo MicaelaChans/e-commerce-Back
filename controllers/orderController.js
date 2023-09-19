@@ -4,9 +4,7 @@ const Product = require("../models/Product");
 
 const orderController = {
   index: async (req, res) => {
-    console.log("llegamos a Order");
     const orders = await Order.find().populate("user").populate("products");
-    console.log(orders);
     return res.json(orders);
   },
 
@@ -48,7 +46,20 @@ const orderController = {
     return res.json(order);
   },
 
-  update: async (req, res) => {},
+  update: async (req, res) => {
+    //buscar la / las ordenes y pasarles payed
+    //   const orderId = req.params.id;
+    // try {
+    //   const order = await Order.findByIdAndUpdate(orderId, { state: "Pagado" }, { new: true });
+    //   if (!order) {
+    //     return res.status(404).json({ error: "Orden no encontrada" });
+    //   }
+    //   return res.json({ message: "Orden actualizada correctamente", order });
+    // } catch (error) {
+    //   console.error("Error al actualizar la orden:", error);
+    //   return res.status(500).json({ error: "Error interno del servidor" });
+    // }
+  },
 
   destroy: async (req, res) => {
     try {
