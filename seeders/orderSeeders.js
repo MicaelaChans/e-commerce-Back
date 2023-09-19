@@ -9,7 +9,7 @@ async function orderSeeders() {
 
   const orders = [];
   const order1 = new Order({
-    state: "Entregado",
+    state: "Delivered",
     user: users[0],
   });
   orders.push(order1);
@@ -17,7 +17,7 @@ async function orderSeeders() {
   await users[0].save();
 
   const order2 = new Order({
-    state: "En Camino",
+    state: "On the way",
     user: users[0],
   });
   orders.push(order2);
@@ -25,7 +25,7 @@ async function orderSeeders() {
   await users[0].save();
 
   const order3 = new Order({
-    state: "Pagado",
+    state: "Paid",
     user: users[0],
   });
   orders.push(order3);
@@ -33,7 +33,7 @@ async function orderSeeders() {
   await users[0].save();
 
   const order4 = new Order({
-    state: "Sin pagar",
+    state: "Not Payed",
     user: users[0],
   });
   orders.push(order4);
