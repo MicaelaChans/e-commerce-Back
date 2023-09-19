@@ -10,6 +10,7 @@ router.get("/:id", adminController.show);
 router.patch("/:id", adminController.update);
 router.delete("/:id", adminController.destroy);
 
-router.post("/logout", adminController.logout);
+//router.post("/logout", adminController.logout);
 
 module.exports = router;
+ 
