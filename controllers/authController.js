@@ -18,7 +18,7 @@ const authController = {
     if (!user) return res.status(401).json({ error: "Wrong credentials..." });
 
     //Verificar contraseña (la contraseña en db hace match con la recibida)
-    const validatePassword = user.password// await bcrypt.compare(password, user.password);
+    const validatePassword =  await bcrypt.compare(password, user.password);
 
     if (!validatePassword) return res.status(401).json({ error: "Wrong credentials..." });
 
