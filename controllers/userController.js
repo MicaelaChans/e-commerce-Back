@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Order = require("../models/Order");
 
 const userController = {
   index: async (req, res) => {
@@ -11,9 +12,13 @@ const userController = {
   },
 
   showOrders: async (req, res) => {
-    const id = req.params.id;
-    const user = await User.findById(id);
-    return res.json(user);
+    const userId = req.params.id;
+    try {
+      const orders = await Order.find({ user: userId });
+      res.json(orders);
+    } catch (error) {
+      res.status(500).send({ error: "Error fetching orders for the user." });
+    }
   },
 
   update: async (req, res) => {},

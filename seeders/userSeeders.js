@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const mongoose = require("../dbInitialSetup");
+const bcrypt = require('bcryptjs');
 
 async function userSeeders() {
 await User.collection.drop();
@@ -8,7 +9,7 @@ await User.collection.drop();
   const user = new User({
    firstname: "Martin",
    lastname: "Gestido",
-   password: "clave",
+   password: bcrypt.hashSync("clave", 10),
    email: "gestidomartin@gmail.com",
    adress: "Caraguatay 2060",
    phone: "099852739"
