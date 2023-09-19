@@ -47,6 +47,7 @@ const orderController = {
   },
 
   update: async (req, res) => {
+    console.log(req.params.id);
     //buscar la / las ordenes y pasarles payed
     //   const orderId = req.params.id;
     // try {
