@@ -36,6 +36,7 @@ const authController = {
     const lastname = req.body.lastname;
     const email = req.body.email;
     const phone = req.body.phone;
+    const adress = req.body.adress;
     const password = await bcrypt.hash(req.body.password, 10);
     const checkEmail = await User.findOne({ email: email });
     const checkPhone = await User.findOne({ phone: phone });
@@ -50,6 +51,7 @@ const authController = {
         email: email,
         phone: phone,
         password: password,
+        adress: adress
       });
       if (user) {
         return res.json("usuario creado");

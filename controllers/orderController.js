@@ -4,7 +4,9 @@ const Product = require("../models/Product");
 
 const orderController = {
   index: async (req, res) => {
+    console.log("llegamos a Order");
     const orders = await Order.find().populate("user").populate("products");
+    console.log(orders);
     return res.json(orders);
   },
 
@@ -14,16 +16,16 @@ const orderController = {
     const user = await User.findById(userId);
     const order = await Order.create({
       user: userId,
-      products: []
+      products: [],
     });
-    for(let i=0; i<cart.length; i++){
+    for (let i = 0; i < cart.length; i++) {
       let prod = await Product.findById(cart[i].id);
-      order.products.push(prod); 
-      prod.orders.push(order); 
-      prod.save();  
+      order.products.push(prod);
+      prod.orders.push(order);
+      prod.save();
     }
-    order.state = "Not Payed"
-    order.save(); 
+    order.state = "Not Payed";
+    order.save();
     user.orders.push(order);
     user.save();
     return res.json("orden creada");
