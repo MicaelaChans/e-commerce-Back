@@ -109,9 +109,8 @@ const authController = {
 
     const resetLink = `http://localhost:5173/reset-password-page?token=${resetToken}`;
 
-    // Utiliza el módulo mailer para enviar el correo electrónico
     mailer.sendMail({
-        from: 'maurodenava01@gmail.com', // Reemplaza esto con tu correo verificado en SendGrid
+        from: 'maurodenava01@gmail.com',
         to: email,
         subject: 'Password Reset',
         html: `<h2>Hello, ${user.firstname} ${user.lastname}</h2>
