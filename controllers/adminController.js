@@ -1,6 +1,4 @@
 const Admin = require("../models/Admin");
-const User = require("../models/User");
-const Order = require("../models/Order");
 
 const adminController = {
   index: async (req, res) => {
