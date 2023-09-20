@@ -26,7 +26,7 @@ const orderController = {
     order.save();
     user.orders.push(order);
     user.save();
-    return res.json("orden creada");
+    return res.json("Order created");
     /*const user = await User.findById(req.auth.id);
     try {
       const order = await Order.create({
@@ -64,9 +64,9 @@ const orderController = {
     try {
       const orderId = req.body.orderId;
       await Order.findByIdAndRemove(orderId);
-      return res.json("Order borrada");
+      return res.json("Order deleted");
     } catch (error) {
-      console.log("Error al eliminar order", error);
+      console.log("Error deleting order", error);
     }
   },
 };
