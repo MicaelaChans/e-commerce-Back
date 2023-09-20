@@ -48,18 +48,17 @@ const orderController = {
 
   update: async (req, res) => {
     console.log(req.params.id);
-    //buscar la / las ordenes y pasarles payed
-    //   const orderId = req.params.id;
-    // try {
-    //   const order = await Order.findByIdAndUpdate(orderId, { state: "Pagado" }, { new: true });
-    //   if (!order) {
-    //     return res.status(404).json({ error: "Orden no encontrada" });
-    //   }
-    //   return res.json({ message: "Orden actualizada correctamente", order });
-    // } catch (error) {
-    //   console.error("Error al actualizar la orden:", error);
-    //   return res.status(500).json({ error: "Error interno del servidor" });
-    // }
+   const orderId = req.params.id;
+ try {
+   const order = await Order.findByIdAndUpdate(orderId, { state: "Pagado" }, { new: true });
+   if (!order) {
+     return res.status(404).json({ error: "Orden no encontrada" });
+   }
+   return res.json({ message: "Orden actualizada correctamente", order });
+ } catch (error) {
+   console.error("Error al actualizar la orden:", error);
+   return res.status(500).json({ error: "Error interno del servidor" });
+ }
   },
 
   destroy: async (req, res) => {
