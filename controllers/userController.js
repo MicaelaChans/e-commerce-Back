@@ -7,8 +7,18 @@ const userController = {
   },
 
   show: async (req, res) => {
-    const users = await User.find().populate("orders");
-    return res.json(users);
+    try {
+      const userId = req.params.id;
+      const user = await User.findById(userId).populate("orders");
+      if (!user) {
+        return res.status(404).json({ error: "User not found." });
+      }
+      return res.json(user);
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ error: "An error occurred while fetching the user." });
+    }
   },
 
   showOrders: async (req, res) => {
@@ -47,11 +57,12 @@ const userController = {
 
   destroy: async (req, res) => {
     try {
-      const userId = req.body.userId;
+      const userId = req.params.id;
       await User.findByIdAndRemove(userId);
-      return res.json("User borrado");
+      return res.json("User deleted successfully");
     } catch (error) {
-      console.log("Error al eliminar user", error);
+      console.log("Error deleting user", error);
+      res.status(500).send({ error: "Error deleting user." });
     }
   },
 };
