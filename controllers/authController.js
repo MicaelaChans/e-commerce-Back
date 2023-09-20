@@ -1,8 +1,7 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const nodemailer = require("nodemailer");
-const mailer = require('../mailer');
+const mailer = require("../mailer");
 
 const authController = {
   tokens: async (req, res) => {
@@ -54,10 +53,14 @@ const authController = {
         email: email,
         phone: phone,
         password: password,
-        address: address
+        address: address,
       });
       if (user) {
-        return res.json("usuario creado");
+        const token = jwt.sign(
+          { sub: user.id, email: user.email },
+          process.env.JWT_SECRET
+        );
+        return res.json({ message: "usuario creado", token: token });
       } else {
         return res.json("error en la creacion del usuario");
       }
@@ -100,32 +103,39 @@ const authController = {
     const user = await User.findOne({ email });
 
     if (!user) {
-        return res.status(404).json({ error: "No user found with this email address." });
+      return res
+        .status(404)
+        .json({ error: "No user found with this email address." });
     }
 
     const resetToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-        expiresIn: "1h",
+      expiresIn: "1h",
     });
 
     const resetLink = `http://localhost:5173/reset-password-page?token=${resetToken}`;
 
-    mailer.sendMail({
-        from: 'maurodenava01@gmail.com',
+    mailer.sendMail(
+      {
+        from: "maurodenava01@gmail.com",
         to: email,
-        subject: 'Password Reset',
+        subject: "Password Reset",
         html: `<h2>Hello, ${user.firstname} ${user.lastname}</h2>
                <p>Click the following link to reset your password:</p>
-               <a href="${resetLink}">${resetLink}</a>`
-    }, (error, info) => {
+               <a href="${resetLink}">${resetLink}</a>`,
+      },
+      (error, info) => {
         if (error) {
-            console.log(error);
-            return res.status(500).json({ error: 'Failed to send email.' });
+          console.log(error);
+          return res.status(500).json({ error: "Failed to send email." });
         } else {
-            console.log('Email sent: ' + info.response);
-            return res.status(200).json({ message: 'Password reset link sent to email.' });
+          console.log("Email sent: " + info.response);
+          return res
+            .status(200)
+            .json({ message: "Password reset link sent to email." });
         }
-    });
-},
+      }
+    );
+  },
 
   resetPassword: async (req, res) => {
     const { token, newPassword } = req.body;
