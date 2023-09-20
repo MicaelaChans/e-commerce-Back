@@ -13,7 +13,7 @@ const orderController = {
     const cart = req.body.cart;
     const user = await User.findById(userId);
     const order = await Order.create({
-      user: userId,
+      user: user,
       products: [],
     });
     for (let i = 0; i < cart.length; i++) {
