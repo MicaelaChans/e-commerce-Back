@@ -50,7 +50,7 @@ const orderController = {
     console.log(req.params.id);
    const orderId = req.params.id;
  try {
-   const order = await Order.findByIdAndUpdate(orderId, { state: "Pagado" }, { new: true });
+   const order = await Order.findByIdAndUpdate(orderId, { state: "Paid" });
    if (!order) {
      return res.status(404).json({ error: "Orden no encontrada" });
    }
