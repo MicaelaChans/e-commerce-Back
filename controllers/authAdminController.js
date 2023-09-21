@@ -23,7 +23,7 @@ const authAdminController = {
     }
 
     const token = jwt.sign(
-      { sub: admin.id, username: admin.username },
+      { sub: admin.id, username: admin.username, role: "admin" },
       process.env.JWT_SECRET
     );
     return res.status(200).json({ token });

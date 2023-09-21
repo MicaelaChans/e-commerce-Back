@@ -18,7 +18,7 @@ const authController = {
       return res.status(401).json({ error: "Wrong credentials..." });
 
     const token = jwt.sign(
-      { sub: user.id, email: user.email },
+      { sub: user.id, email: user.email, role: "user" },
       process.env.JWT_SECRET
     );
     return res.status(200).json({ token });
@@ -48,7 +48,7 @@ const authController = {
       });
       if (user) {
         const token = jwt.sign(
-          { sub: user.id, email: user.email },
+          { sub: user.id, email: user.email, role: "user" },
           process.env.JWT_SECRET
         );
         return res.json({ message: "usuario creado", token: token });
