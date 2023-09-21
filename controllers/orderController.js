@@ -4,7 +4,7 @@ const Product = require("../models/Product");
 
 const orderController = {
   index: async (req, res) => {
-    const orders = await Order.find().populate("user").populate("products");
+    const orders = await Order.find().sort({ createdAt: -1 }).populate("user").populate("products");
     return res.json(orders);
   },
 
