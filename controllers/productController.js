@@ -7,19 +7,7 @@ const productController = {
     return res.json(products);
   },
 
-  create: async (req, res) => {
-    /*const product = await Product.create({
-      name: name,
-      description: description,
-      image: "",
-      stock: stock,
-      price: price,
-      otherProperties: otherProperties,
-      rating: rating,
-      category: category,
-      orders: orders,
-    });*/
-  },
+  create: async (req, res) => {},
 
   show: async (req, res) => {
     const product = await Product.findById(req.params.id);

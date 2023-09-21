@@ -1,22 +1,22 @@
 const express = require("express");
 const userController = require("../controllers/userController");
-const userRouter = express.Router();
+const router = express.Router();
 const { expressjwt: checkJwt } = require("express-jwt");
 
-userRouter.get("/", userController.index);
+router.get("/", userController.index);
 
-userRouter.get(
+router.get(
   "/:id",
   //checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   userController.show
 );
-userRouter.get(
+router.get(
   "/:id/orders",
   //checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   userController.showOrders
 );
 
-userRouter.patch("/:id", userController.update);
-userRouter.delete("/:id", userController.destroy);
+router.patch("/:id", userController.update);
+router.delete("/:id", userController.destroy);
 
-module.exports = userRouter;
+module.exports = router;

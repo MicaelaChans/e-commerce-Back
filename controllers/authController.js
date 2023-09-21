@@ -6,30 +6,21 @@ const mailer = require("../mailer");
 const authController = {
   tokens: async (req, res) => {
     const { email, password } = req.body;
-    //Validacion básica
     if (!email || !password) {
       return res
         .status(400)
         .json({ error: "Please provide both email and password." });
     }
-    //Verificamos credenciales
-    //Verificar usuario en DB
     const user = await User.findOne({ email: req.body.email });
-
     if (!user) return res.status(401).json({ error: "Wrong credentials..." });
-
-    //Verificar contraseña (la contraseña en db hace match con la recibida)
     const validatePassword = await bcrypt.compare(password, user.password);
-
     if (!validatePassword)
       return res.status(401).json({ error: "Wrong credentials..." });
 
-    //Genero token
     const token = jwt.sign(
       { sub: user.id, email: user.email },
       process.env.JWT_SECRET
     );
-    //Respondo con el token a la llamada
     return res.status(200).json({ token });
   },
 

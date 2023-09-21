@@ -27,18 +27,6 @@ const orderController = {
     user.orders.push(order);
     user.save();
     return res.json("Order created");
-    /*const user = await User.findById(req.auth.id);
-    try {
-      const order = await Order.create({
-        products: req.body.product,
-        user: user._id,
-      });
-      user.orders.push(order);
-      user.save();
-      return res.json({ msg: "Order creada" });
-    } catch (error) {
-      console.log("Error al obtener los datos", error);
-    }*/
   },
 
   show: async (req, res) => {

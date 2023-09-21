@@ -1,6 +1,6 @@
 const Admin = require("../models/Admin");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const adminController = {
   index: async (req, res) => {
@@ -48,7 +48,7 @@ const adminController = {
 
   destroy: async (req, res) => {
     try {
-      const adminId = req.params.id; // Obtén el ID del administrador a eliminar desde los parámetros de la URL
+      const adminId = req.params.id;
       await Admin.findByIdAndRemove(adminId);
       return res.json({ message: "Admin borrado exitosamente" });
     } catch (error) {
