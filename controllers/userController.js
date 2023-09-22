@@ -3,7 +3,7 @@ const Order = require("../models/Order");
 
 const userController = {
   index: async (req, res) => {
-    const user = await User.find()
+    const user = await User.find().populate("orders");
     return res.send(user);
   },
 
