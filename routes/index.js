@@ -10,9 +10,10 @@ const categoryRoutes = require("./categoryRoutes");
 
 function routes(app) {
   //app.use(makeUserAvailableInViews);
-  app.use(pageRoutes);
+ 
   app.use(authRoutes);
   app.use(authAdminRoutes);
+  app.use(pageRoutes);
   app.use("/users", userRoutes);
   app.use("/products", productRoutes);
   app.use("/admins", adminRoutes);
