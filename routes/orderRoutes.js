@@ -4,11 +4,10 @@ const router = express.Router();
 const checkRole = require("../middlewares/checkRole");
 const { expressjwt: checkJwt } = require("express-jwt");
 
-
-router.get("/",  orderController.index);
-router.post("/",   orderController.create);
-router.get("/:id",  orderController.show);
-router.patch("/:id", orderController.update);
-router.delete("/:id",  orderController.destroy);
+router.get("/", checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), checkRole('user'), orderController.index);
+router.post("/", checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), checkRole('user'), orderController.create);
+router.get("/:id", checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), checkRole('user'), orderController.show);
+router.patch("/:id", checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), checkRole('admin'), orderController.update);
+router.delete("/:id", checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), checkRole('admin'), orderController.destroy);
 
 module.exports = router;

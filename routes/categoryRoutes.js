@@ -6,8 +6,8 @@ const { expressjwt: checkJwt } = require("express-jwt");
 
 router.get("/", categoryController.index);
 router.get("/:id", categoryController.show);
-router.post("/", categoryController.create);
-router.patch("/:id", categoryController.update);
-router.delete("/:id", categoryController.destroy);
+router.post("/", checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), checkRole('admin'), categoryController.create);
+router.patch("/:id", checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), checkRole('admin'), categoryController.update);
+router.delete("/:id", checkJwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), checkRole('admin'), categoryController.destroy);
 
 module.exports = router;
