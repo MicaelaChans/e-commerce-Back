@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 routes(app);
-productSeeder();
-adminSeeder();
+//productSeeder();
+//adminSeeder();
 
 app.listen(port, () => console.log("Listening on: http://localhost:" + port));
