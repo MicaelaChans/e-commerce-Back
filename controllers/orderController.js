@@ -4,7 +4,10 @@ const Product = require("../models/Product");
 
 const orderController = {
   index: async (req, res) => {
-    const orders = await Order.find().sort({ createdAt: -1 }).populate("user").populate("products");
+    const orders = await Order.find()
+      .sort({ createdAt: -1 })
+      .populate("user")
+      .populate("products");
     return res.json(orders);
   },
 
@@ -12,21 +15,40 @@ const orderController = {
     const userId = req.body.user.id;
     const cart = req.body.cart;
     const user = await User.findById(userId);
-    const order = await Order.create({
-      user: user,
-      products: [],
+    //TENGO QUE VER POR QUE SI NO TENGO STOCK NO ME ACEPTE ESTO
+
+    const existingUnpaidOrder = await Order.findOne({
+      //agregue que si existe una order inpaga
+      user: user, //perteneciente al user
+      state: "Pending", //con el estado pendiente
     });
-    for (let i = 0; i < cart.length; i++) {
-      let prod = await Product.findById(cart[i].id);
-      order.products.push(prod);
-      prod.orders.push(order);
-      prod.save();
+    console.log("llegamos a create");
+    console.log(existingUnpaidOrder);
+    if (existingUnpaidOrder) {
+      //ok
+      for (let i = 0; i < cart.length; i++) {
+        const prod = await Product.findById(cart[i].id);
+        existingUnpaidOrder.products.push(prod);
+      }
+      await existingUnpaidOrder.save();
+    } else {
+      //agregue que si no existe un unpaid order, se genere una order nueva
+      const order = await Order.create({
+        user: user,
+        products: [],
+      });
+      for (let i = 0; i < cart.length; i++) {
+        let prod = await Product.findById(cart[i].id);
+        order.products.push(prod);
+        prod.orders.push(order);
+        prod.save();
+      }
+      order.state = "Pending";
+      order.save();
+      user.orders.push(order);
+      user.save();
+      return res.json("New order created");
     }
-    order.state = "Pending";
-    order.save();
-    user.orders.push(order);
-    user.save();
-    return res.json("Order created");
   },
 
   show: async (req, res) => {
@@ -49,6 +71,7 @@ const orderController = {
   },
 
   destroy: async (req, res) => {
+    console.log("estamos en delete");
     try {
       const orderId = req.body.orderId;
       await Order.findByIdAndRemove(orderId);
