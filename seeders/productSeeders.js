@@ -1,11 +1,13 @@
 const Product = require("../models/Product");
 const mongoose = require("../dbInitialSetup");
 const categorySeeders = require("./categorySeeders");
+const orderSeeders = require("./orderSeeders");
 
-async function productSeeder() {
+async function productSeeders() {
   await Product.collection.drop();
 
   const categories = await categorySeeders();
+  const orders = await orderSeeders();
 
   const products = [];
   const harmony = new Product({
@@ -24,10 +26,13 @@ async function productSeeder() {
     stock: 10,
     price: 1200,
     category: categories[0],
+    orders: orders[0],
   });
   products.push(harmony);
   categories[0].products.push(harmony.id);
   await categories[0].save();
+  orders[0].products.push(harmony.id);
+  await orders[0].save();
 
   const harmonyB43 = new Product({
     name: "Harmony B43",
@@ -469,4 +474,4 @@ async function productSeeder() {
   return await Product.insertMany(products);
 }
 
-module.exports = productSeeder;
+module.exports = productSeeders;
