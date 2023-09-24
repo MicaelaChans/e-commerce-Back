@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 require("./dbInitialSetup");
 const express = require("express");
 const productSeeder = require("./seeders/productSeeder");
@@ -11,6 +12,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
 
 routes(app);
 //productSeeder();
