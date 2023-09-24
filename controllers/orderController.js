@@ -18,21 +18,19 @@ const orderController = {
       const cart = req.body.cart;
       const user = await User.findById(userId);
 
-    
+
       const existingUnpaidOrder = await Order.findOne({
         user: user._id, 
         state: "Pending",
       });
-
       if (existingUnpaidOrder) {
-        
         for (let i = 0; i < cart.length; i++) {
           const prod = await Product.findById(cart[i].id);
           existingUnpaidOrder.products.push(prod);
         }
         await existingUnpaidOrder.save();
       } else {
-        
+
         const order = new Order({
           user: user._id, 
           products: [],
