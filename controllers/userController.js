@@ -33,9 +33,11 @@ const userController = {
   },
 
   update: async (req, res) => {
-    try {
+    console.log("Tamo aca");
+    /*try {
       const userId = req.params.id;
       const updatedUserData = req.body;
+      console.log(req.body);
 
       const updatedUser = await User.findByIdAndUpdate(
         userId,
@@ -53,7 +55,7 @@ const userController = {
       return res
         .status(500)
         .json({ message: "Error al actualizar el usuario" });
-    }
+    }*/
   },
 
   destroy: async (req, res) => {

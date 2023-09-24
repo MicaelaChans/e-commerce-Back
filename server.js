@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 routes(app);
-//productSeeder();
-//adminSeeder();
+productSeeder();
+adminSeeder();
 
 app.listen(port, () => console.log("Listening on: http://localhost:" + port));
