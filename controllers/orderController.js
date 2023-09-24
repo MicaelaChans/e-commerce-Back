@@ -22,8 +22,6 @@ const orderController = {
       user: user, //perteneciente al user
       state: "Pending", //con el estado pendiente
     });
-    console.log("llegamos a create");
-    console.log(existingUnpaidOrder);
     if (existingUnpaidOrder) {
       //ok
       for (let i = 0; i < cart.length; i++) {
@@ -31,6 +29,7 @@ const orderController = {
         existingUnpaidOrder.products.push(prod);
       }
       await existingUnpaidOrder.save();
+      return res.json("Products added to existing pending order");
     } else {
       //agregue que si no existe un unpaid order, se genere una order nueva
       const order = await Order.create({
