@@ -74,7 +74,6 @@ const orderController = {
   },
 
   destroy: async (req, res) => {
-    console.log("estamos en delete");
     try {
       const orderId = req.body.orderId;
       await Order.findByIdAndRemove(orderId);
