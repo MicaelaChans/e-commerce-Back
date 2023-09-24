@@ -4,6 +4,7 @@ const Product = require("../models/Product");
 
 const orderController = {
   index: async (req, res) => {
+    console.log("lelgamos al index");
     const orders = await Order.find()
       .sort({ createdAt: -1 })
       .populate("user")
@@ -12,42 +13,49 @@ const orderController = {
   },
 
   create: async (req, res) => {
-    const userId = req.body.user.id;
-    const cart = req.body.cart;
-    const user = await User.findById(userId);
-    //TENGO QUE VER POR QUE SI NO TENGO STOCK NO ME ACEPTE ESTO
+    try {
+      const userId = req.body.user.id;
+      const cart = req.body.cart;
+      const user = await User.findById(userId);
 
-    const existingUnpaidOrder = await Order.findOne({
-      //agregue que si existe una order inpaga
-      user: user, //perteneciente al user
-      state: "Pending", //con el estado pendiente
-    });
-    console.log("llegamos a create");
-    console.log(existingUnpaidOrder);
-    if (existingUnpaidOrder) {
-      //ok
-      for (let i = 0; i < cart.length; i++) {
-        const prod = await Product.findById(cart[i].id);
-        existingUnpaidOrder.products.push(prod);
-      }
-      await existingUnpaidOrder.save();
-    } else {
-      //agregue que si no existe un unpaid order, se genere una order nueva
-      const order = await Order.create({
-        user: user,
-        products: [],
+    
+      const existingUnpaidOrder = await Order.findOne({
+        user: user._id, 
+        state: "Pending",
       });
-      for (let i = 0; i < cart.length; i++) {
-        let prod = await Product.findById(cart[i].id);
-        order.products.push(prod);
-        prod.orders.push(order);
-        prod.save();
+
+      if (existingUnpaidOrder) {
+        
+        for (let i = 0; i < cart.length; i++) {
+          const prod = await Product.findById(cart[i].id);
+          existingUnpaidOrder.products.push(prod);
+        }
+        await existingUnpaidOrder.save();
+      } else {
+        
+        const order = new Order({
+          user: user._id, 
+          products: [],
+          state: "Pending",
+        });
+
+        for (let i = 0; i < cart.length; i++) {
+          const prod = await Product.findById(cart[i].id);
+          order.products.push(prod);
+          prod.orders.push(order);
+          await prod.save();
+        }
+
+        await order.save();
+        user.orders.push(order._id); 
+
+        return res.json({ message: "Nueva orden creada", orderId: order._id });
       }
-      order.state = "Pending";
-      order.save();
-      user.orders.push(order);
-      user.save();
-      return res.json("New order created");
+
+      return res.json({ message: "Productos agregados a la orden existente" });
+    } catch (error) {
+      console.error("Error al crear la orden:", error);
+      return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
 
