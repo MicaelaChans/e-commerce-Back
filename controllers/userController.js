@@ -49,7 +49,6 @@ const userController = {
 
       return res.json(updatedUser);
     } catch (error) {
-      console.log("Error al actualizar el usuario", error);
       return res
         .status(500)
         .json({ message: "Error al actualizar el usuario" });
@@ -62,7 +61,6 @@ const userController = {
       await User.findByIdAndRemove(userId);
       return res.json("User deleted successfully");
     } catch (error) {
-      console.log("Error deleting user", error);
       res.status(500).send({ error: "Error deleting user." });
     }
   },
