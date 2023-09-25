@@ -69,8 +69,10 @@ const orderController = {
       }
       for(let i=0; i<order.products.length; i++){
         let product = await Product.findById(order.products[i].id);
-        product.stock = product.stock-1;
-        await product.save();
+          product.stock = product.stock-1;
+          await product.save();
+         
+        
       }
       return res.json({ message: "Orden actualizada correctamente", order });
     } catch (error) {
