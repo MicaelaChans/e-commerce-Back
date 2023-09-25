@@ -1,7 +1,6 @@
 const Order = require("../models/Order");
 const mongoose = require("../dbInitialSetup");
 const userSeeders = require("./userSeeders");
-const productSeeders = require("./productSeeders");
 
 async function orderSeeders() {
   await Order.collection.drop();

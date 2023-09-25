@@ -155,10 +155,13 @@ async function productSeeders() {
     stock: 10,
     price: 2500,
     category: categories[0],
+    orders: orders[0],
   });
   products.push(box1002);
   categories[0].products.push(box1002.id);
   await categories[0].save();
+  orders[0].products.push(box1002.id);
+  await orders[0].save();
 
   const box1003 = new Product({
     name: "Box 1003 Wall",
@@ -218,10 +221,13 @@ async function productSeeders() {
       consumption: "10hs",
     },
     category: categories[1],
+    orders: orders[0],
   });
   products.push(decoA1);
   categories[1].products.push(decoA1.id);
   await categories[1].save();
+  orders[0].products.push(decoA1.id);
+  await orders[0].save();
 
   const decoB2 = new Product({
     name: "Deco B2",
@@ -260,10 +266,13 @@ async function productSeeders() {
       consumption: "23hs",
     },
     category: categories[1],
+    orders: orders[0],
   });
   products.push(decoH15);
   categories[1].products.push(decoH15.id);
   await categories[1].save();
+  orders[0].products.push(decoH15.id);
+  await orders[0].save();
 
   const deco1012 = new Product({
     name: "Deco 1012",
@@ -365,10 +374,13 @@ async function productSeeders() {
       consumption: "19hs",
     },
     category: categories[1],
+    orders: orders[0],
   });
   products.push(aduroP14);
   categories[1].products.push(aduroP14.id);
   await categories[1].save();
+  orders[0].products.push(aduroP14.id);
+  await orders[0].save();
 
   const aduroP2 = new Product({
     name: "Aduro P2",
@@ -403,10 +415,13 @@ async function productSeeders() {
       depth: "433mm",
     },
     category: categories[2],
+    orders: orders[0],
   });
   products.push(woodshet);
   categories[2].products.push(woodshet.id);
   await categories[2].save();
+  orders[0].products.push(woodshet.id);
+  await orders[0].save();
 
   const pellets = new Product({
     name: "Pellets",
@@ -418,10 +433,13 @@ async function productSeeders() {
       weight: "15kg",
     },
     category: categories[2],
+    orders: orders[0],
   });
   products.push(pellets);
   categories[2].products.push(pellets.id);
   await categories[2].save();
+  orders[0].products.push(pellets.id);
+  await orders[0].save();
 
   const charcoal = new Product({
     name: "Charcoal",
