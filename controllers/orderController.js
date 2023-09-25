@@ -82,13 +82,20 @@ const orderController = {
   },
 
   destroy: async (req, res) => {
-    try {
-      const orderId = req.body.orderId;
-      await Order.findByIdAndRemove(orderId);
-      return res.json("Order deleted");
-    } catch (error) {
-      console.log("Error deleting order", error);
-    }
+   const prodId = req.params.id;
+   const orderId = req.body.orderId;
+   const order = await Order.findById(orderId);
+  
+  
+   let i = 0;
+   while (i < order.products.length) {
+     if (order.products[i]._id == prodId) {
+       order.products.splice(i, 1);
+     } else {
+       ++i;
+     }
+   }
+   order.save();
   },
 };
 
