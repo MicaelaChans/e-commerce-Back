@@ -62,9 +62,15 @@ const orderController = {
   update: async (req, res) => {
     const orderId = req.params.id;
     try {
-      const order = await Order.findByIdAndUpdate(orderId, { state: "Paid" });
+      const order = await Order.findByIdAndUpdate(orderId, { state: "Paid" }).populate("products");
+      order.save();
       if (!order) {
         return res.status(404).json({ error: "Orden no encontrada" });
+      }
+      for(let i=0; i<order.products.length; i++){
+        let product = await Product.findById(order.products[i].id);
+        product.stock = product.stock-1;
+        await product.save();
       }
       return res.json({ message: "Orden actualizada correctamente", order });
     } catch (error) {
