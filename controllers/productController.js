@@ -15,13 +15,11 @@ const productController = {
   },
 
   update: async (req, res) => {
-    console.log("llegamos al update");
     const productId = req.params.id;
     const { rating } = req.body;
     const product = await Product.findById(productId);
     product.rating.push(rating);
     await product.save();
-    console.log(product);
   },
 
   destroy: async (req, res) => {
