@@ -32,7 +32,29 @@ const userController = {
     }
   },
 
-  update: async (req, res) => {},
+  update: async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const updatedUserData = req.body;
+
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        updatedUserData,
+        { new: true }
+      );
+
+      if (!updatedUser) {
+        return res.status(404).json({ message: "Usuario no encontrado" });
+      }
+
+      return res.json(updatedUser);
+    } catch (error) {
+      console.log("Error al actualizar el usuario", error);
+      return res
+        .status(500)
+        .json({ message: "Error al actualizar el usuario" });
+    }
+  },
 
   destroy: async (req, res) => {
     try {
