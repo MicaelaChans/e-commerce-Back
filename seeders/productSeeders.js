@@ -1,11 +1,13 @@
 const Product = require("../models/Product");
 const mongoose = require("../dbInitialSetup");
 const categorySeeders = require("./categorySeeders");
+const orderSeeders = require("./orderSeeders");
 
-async function productSeeder() {
+async function productSeeders() {
   await Product.collection.drop();
 
   const categories = await categorySeeders();
+  const orders = await orderSeeders();
 
   const products = [];
   const harmony = new Product({
@@ -24,10 +26,13 @@ async function productSeeder() {
     stock: 10,
     price: 1200,
     category: categories[0],
+    orders: orders[0],
   });
   products.push(harmony);
   categories[0].products.push(harmony.id);
   await categories[0].save();
+  orders[0].products.push(harmony.id);
+  await orders[0].save();
 
   const harmonyB43 = new Product({
     name: "Harmony B43",
@@ -150,10 +155,13 @@ async function productSeeder() {
     stock: 10,
     price: 2500,
     category: categories[0],
+    orders: orders[0],
   });
   products.push(box1002);
   categories[0].products.push(box1002.id);
   await categories[0].save();
+  orders[0].products.push(box1002.id);
+  await orders[0].save();
 
   const box1003 = new Product({
     name: "Box 1003 Wall",
@@ -213,10 +221,13 @@ async function productSeeder() {
       consumption: "10hs",
     },
     category: categories[1],
+    orders: orders[0],
   });
   products.push(decoA1);
   categories[1].products.push(decoA1.id);
   await categories[1].save();
+  orders[0].products.push(decoA1.id);
+  await orders[0].save();
 
   const decoB2 = new Product({
     name: "Deco B2",
@@ -255,10 +266,13 @@ async function productSeeder() {
       consumption: "23hs",
     },
     category: categories[1],
+    orders: orders[0],
   });
   products.push(decoH15);
   categories[1].products.push(decoH15.id);
   await categories[1].save();
+  orders[0].products.push(decoH15.id);
+  await orders[0].save();
 
   const deco1012 = new Product({
     name: "Deco 1012",
@@ -360,10 +374,13 @@ async function productSeeder() {
       consumption: "19hs",
     },
     category: categories[1],
+    orders: orders[0],
   });
   products.push(aduroP14);
   categories[1].products.push(aduroP14.id);
   await categories[1].save();
+  orders[0].products.push(aduroP14.id);
+  await orders[0].save();
 
   const aduroP2 = new Product({
     name: "Aduro P2",
@@ -398,10 +415,13 @@ async function productSeeder() {
       depth: "433mm",
     },
     category: categories[2],
+    orders: orders[0],
   });
   products.push(woodshet);
   categories[2].products.push(woodshet.id);
   await categories[2].save();
+  orders[0].products.push(woodshet.id);
+  await orders[0].save();
 
   const pellets = new Product({
     name: "Pellets",
@@ -413,10 +433,13 @@ async function productSeeder() {
       weight: "15kg",
     },
     category: categories[2],
+    orders: orders[0],
   });
   products.push(pellets);
   categories[2].products.push(pellets.id);
   await categories[2].save();
+  orders[0].products.push(pellets.id);
+  await orders[0].save();
 
   const charcoal = new Product({
     name: "Charcoal",
@@ -469,4 +492,4 @@ async function productSeeder() {
   return await Product.insertMany(products);
 }
 
-module.exports = productSeeder;
+module.exports = productSeeders;

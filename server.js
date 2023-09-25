@@ -2,7 +2,7 @@ require("dotenv").config();
 const path = require("path");
 require("./dbInitialSetup");
 const express = require("express");
-const productSeeder = require("./seeders/productSeeder");
+const productSeeder = require("./seeders/productSeeders");
 const adminSeeder = require("./seeders/adminSeeders");
 const routes = require("./routes");
 const app = express();
