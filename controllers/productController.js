@@ -14,7 +14,13 @@ const productController = {
     return res.json(product);
   },
 
-  update: async (req, res) => {},
+  update: async (req, res) => {
+    const productId = req.params.id;
+    const { rating } = req.body;
+    const product = await Product.findById(productId);
+    product.rating.push(rating);
+    await product.save();
+  },
 
   destroy: async (req, res) => {
     try {
