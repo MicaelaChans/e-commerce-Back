@@ -85,6 +85,7 @@ const orderController = {
    const prodId = req.params.id;
    const orderId = req.body.orderId;
    const order = await Order.findById(orderId);
+   const product = await Product.findById(prodId);
   
   
    let i = 0;
@@ -96,7 +97,10 @@ const orderController = {
      }
    }
    order.save();
+
+  return res.json("producto borrado de esta roden")
   },
+  
 };
 
 module.exports = orderController;
