@@ -57,7 +57,6 @@ const orderController = {
   show: async (req, res) => {
     const order = await Order.findById(req.params.id);
     return res.json(order);
-    console.log("martin");
   },
 
   update: async (req, res) => {
