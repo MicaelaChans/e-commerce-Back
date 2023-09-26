@@ -25,7 +25,7 @@ const userController = {
   showOrders: async (req, res) => {
     const userId = req.params.id;
     try {
-      const orders = await Order.find({ user: userId });
+      const orders = await Order.find({ user: userId }).populate("user");
       res.json(orders);
     } catch (error) {
       res.status(500).send({ error: "Error fetching orders for the user." });

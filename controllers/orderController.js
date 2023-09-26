@@ -8,6 +8,7 @@ const orderController = {
       .sort({ createdAt: -1 })
       .populate("user")
       .populate("products");
+    console.log(orders);
     return res.json(orders);
   },
 
@@ -56,6 +57,7 @@ const orderController = {
 
   show: async (req, res) => {
     const order = await Order.findById(req.params.id);
+    console.log(order)
     return res.json(order);
   },
 
@@ -71,8 +73,6 @@ const orderController = {
         let product = await Product.findById(order.products[i].id);
           product.stock = product.stock-1;
           await product.save();
-         
-        
       }
       return res.json({ message: "Orden actualizada correctamente", order });
     } catch (error) {
