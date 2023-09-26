@@ -8,6 +8,7 @@ const orderController = {
       .sort({ createdAt: -1 })
       .populate("user")
       .populate("products");
+    console.log(orders);
     return res.json(orders);
   },
 
@@ -56,6 +57,7 @@ const orderController = {
 
   show: async (req, res) => {
     const order = await Order.findById(req.params.id);
+    console.log(order)
     return res.json(order);
   },
 
@@ -71,8 +73,6 @@ const orderController = {
         let product = await Product.findById(order.products[i].id);
           product.stock = product.stock-1;
           await product.save();
-         
-        
       }
       return res.json({ message: "Orden actualizada correctamente", order });
     } catch (error) {
@@ -82,14 +82,25 @@ const orderController = {
   },
 
   destroy: async (req, res) => {
-    try {
-      const orderId = req.body.orderId;
-      await Order.findByIdAndRemove(orderId);
-      return res.json("Order deleted");
-    } catch (error) {
-      console.log("Error deleting order", error);
-    }
+   const prodId = req.params.id;
+   const orderId = req.body.orderId;
+   const order = await Order.findById(orderId);
+   const product = await Product.findById(prodId);
+  
+  
+   let i = 0;
+   while (i < order.products.length) {
+     if (order.products[i]._id == prodId) {
+       order.products.splice(i, 1);
+     } else {
+       ++i;
+     }
+   }
+   order.save();
+
+  return res.json("producto borrado de esta roden")
   },
+  
 };
 
 module.exports = orderController;

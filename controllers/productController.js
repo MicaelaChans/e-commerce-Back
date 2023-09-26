@@ -7,7 +7,26 @@ const productController = {
     return res.json(products);
   },
 
-  create: async (req, res) => {},
+  create: async (req, res) => {
+    try {
+      const { name, description, image, stock, price, category, rating } = req.body;
+      const product = new Product({
+        name,
+        description,
+        image,
+        stock,
+        price,
+        rating,
+        category,
+        orders: [],
+      });
+      await product.save();
+      return res.json(product);
+    } catch (error) {
+      console.log("Error al crear product", error);
+      return res.status(500).json({ error: "Error creating product" });
+    }
+  },
 
   show: async (req, res) => {
     const product = await Product.findById(req.params.id);
@@ -20,6 +39,7 @@ const productController = {
     const product = await Product.findById(productId);
     product.rating.push(rating);
     await product.save();
+    return res.json(updatedProduct);
   },
 
   destroy: async (req, res) => {
