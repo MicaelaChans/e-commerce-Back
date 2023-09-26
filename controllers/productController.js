@@ -1,5 +1,4 @@
 const Product = require("../models/Product");
-const Category = require("../models/Category");
 
 const productController = {
   index: async (req, res) => {
@@ -9,7 +8,8 @@ const productController = {
 
   create: async (req, res) => {
     try {
-      const { name, description, image, stock, price, category, rating } = req.body;
+      const { name, description, image, stock, price, category, rating } =
+        req.body;
       const product = new Product({
         name,
         description,

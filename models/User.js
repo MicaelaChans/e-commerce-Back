@@ -1,7 +1,6 @@
 const mongoose = require("../dbInitialSetup");
 const Schema = mongoose.Schema;
 
-
 const userSchema = new Schema({
   firstname: String,
   lastname: String,

@@ -57,22 +57,24 @@ const orderController = {
 
   show: async (req, res) => {
     const order = await Order.findById(req.params.id);
-    console.log(order)
+    console.log(order);
     return res.json(order);
   },
 
   update: async (req, res) => {
     const orderId = req.params.id;
     try {
-      const order = await Order.findByIdAndUpdate(orderId, { state: "Paid" }).populate("products");
+      const order = await Order.findByIdAndUpdate(orderId, {
+        state: "Paid",
+      }).populate("products");
       order.save();
       if (!order) {
         return res.status(404).json({ error: "Orden no encontrada" });
       }
-      for(let i=0; i<order.products.length; i++){
+      for (let i = 0; i < order.products.length; i++) {
         let product = await Product.findById(order.products[i].id);
-          product.stock = product.stock-1;
-          await product.save();
+        product.stock = product.stock - 1;
+        await product.save();
       }
       return res.json({ message: "Orden actualizada correctamente", order });
     } catch (error) {
@@ -82,25 +84,23 @@ const orderController = {
   },
 
   destroy: async (req, res) => {
-   const prodId = req.params.id;
-   const orderId = req.body.orderId;
-   const order = await Order.findById(orderId);
-   const product = await Product.findById(prodId);
-  
-  
-   let i = 0;
-   while (i < order.products.length) {
-     if (order.products[i]._id == prodId) {
-       order.products.splice(i, 1);
-     } else {
-       ++i;
-     }
-   }
-   order.save();
+    const prodId = req.params.id;
+    const orderId = req.body.orderId;
+    const order = await Order.findById(orderId);
+    const product = await Product.findById(prodId);
 
-  return res.json("producto borrado de esta roden")
+    let i = 0;
+    while (i < order.products.length) {
+      if (order.products[i]._id == prodId) {
+        order.products.splice(i, 1);
+      } else {
+        ++i;
+      }
+    }
+    order.save();
+
+    return res.json("producto borrado de esta roden");
   },
-  
 };
 
 module.exports = orderController;
