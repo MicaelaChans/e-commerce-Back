@@ -1,4 +1,3 @@
-const pageRoutes = require("./pageRoutes");
 const authRoutes = require("./authRoutes");
 const authAdminRoutes = require("./authAdminRoutes");
 const userRoutes = require("./userRoutes");
@@ -8,7 +7,6 @@ const orderRoutes = require("./orderRoutes");
 const categoryRoutes = require("./categoryRoutes");
 
 function routes(app) {
-  app.use(pageRoutes);
   app.use(authRoutes);
   app.use(authAdminRoutes);
   app.use("/users", userRoutes);
