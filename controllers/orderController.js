@@ -45,13 +45,13 @@ const orderController = {
         await order.save();
         user.orders.push(order._id);
 
-        return res.json({ message: "Nueva orden creada", orderId: order._id });
+        return res.json({ message: "New order created", orderId: order._id });
       }
 
-      return res.json({ message: "Productos agregados a la orden existente" });
+      return res.json({ message: "Error updating order" });
     } catch (error) {
-      console.error("Error al crear la orden:", error);
-      return res.status(500).json({ error: "Error interno del servidor" });
+      console.error("Error at create order:", error);
+      return res.status(500).json({ error: "Internal server error" });
     }
   },
 
@@ -69,37 +69,47 @@ const orderController = {
       }).populate("products");
       order.save();
       if (!order) {
-        return res.status(404).json({ error: "Orden no encontrada" });
+        return res.status(404).json({ error: "Order not found" });
       }
       for (let i = 0; i < order.products.length; i++) {
         let product = await Product.findById(order.products[i].id);
         product.stock = product.stock - 1;
         await product.save();
       }
-      return res.json({ message: "Orden actualizada correctamente", order });
+      return res.json({ message: "Orden updated", order });
     } catch (error) {
-      console.error("Error al actualizar la orden:", error);
-      return res.status(500).json({ error: "Error interno del servidor" });
+      console.error("Error updating the order.:", error);
+      return res.status(500).json({ error: "Internal error" });
     }
   },
 
   destroy: async (req, res) => {
-    const prodId = req.params.id;
-    const orderId = req.body.orderId;
-    const order = await Order.findById(orderId);
-    const product = await Product.findById(prodId);
+    try {
+      const prodId = req.params.id;
+      const orderId = req.body.orderId;
 
-    let i = 0;
-    while (i < order.products.length) {
-      if (order.products[i]._id == prodId) {
-        order.products.splice(i, 1);
-      } else {
-        ++i;
+      const order = await Order.findById(orderId);
+      if (!order) {
+        return res.status(404).json({ error: "Order not found" });
       }
+  
+      const productIndex = order.products.findIndex(
+        (product) => product._id == prodId
+      );
+  
+      if (productIndex === -1) {
+        return res.status(404).json({ error: "Product not found in the order" });
+      }
+  
+      order.products.splice(productIndex, 1);
+  
+      await order.save();
+  
+      return res.json("Product removed from the order");
+    } catch (error) {
+      console.error("Error in destroy function:", error);
+      return res.status(500).json({ error: "Internal server error" });
     }
-    order.save();
-
-    return res.json("producto borrado de esta roden");
   },
 };
 
