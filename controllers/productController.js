@@ -8,7 +8,16 @@ const productController = {
 
   create: async (req, res) => {
     try {
-      const { name, description, image, stock, price, category, rating, otherProperties} = req.body;
+      const {
+        name,
+        description,
+        image,
+        stock,
+        price,
+        category,
+        rating,
+        otherProperties,
+      } = req.body;
       const product = new Product({
         name,
         description,
@@ -38,7 +47,6 @@ const productController = {
     const { rating } = req.body;
 
     const product = await Product.findById(productId);
-    console.log("llegamos a update");
     product.rating.push(rating);
     await product.save();
     return res.json("updatedProduct");
