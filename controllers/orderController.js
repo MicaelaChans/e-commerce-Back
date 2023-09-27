@@ -8,7 +8,6 @@ const orderController = {
       .sort({ createdAt: -1 })
       .populate("user")
       .populate("products");
-    console.log(orders);
     return res.json(orders);
   },
 
@@ -91,19 +90,21 @@ const orderController = {
       if (!order) {
         return res.status(404).json({ error: "Order not found" });
       }
-  
+
       const productIndex = order.products.findIndex(
         (product) => product._id == prodId
       );
-  
+
       if (productIndex === -1) {
-        return res.status(404).json({ error: "Product not found in the order" });
+        return res
+          .status(404)
+          .json({ error: "Product not found in the order" });
       }
-  
+
       order.products.splice(productIndex, 1);
-  
+
       await order.save();
-  
+
       return res.json("Product removed from the order");
     } catch (error) {
       console.error("Error in destroy function:", error);
