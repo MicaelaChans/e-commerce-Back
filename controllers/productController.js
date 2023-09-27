@@ -36,10 +36,12 @@ const productController = {
   update: async (req, res) => {
     const productId = req.params.id;
     const { rating } = req.body;
+
     const product = await Product.findById(productId);
+    console.log("llegamos a update");
     product.rating.push(rating);
     await product.save();
-    return res.json(updatedProduct);
+    return res.json("updatedProduct");
   },
 
   destroy: async (req, res) => {
