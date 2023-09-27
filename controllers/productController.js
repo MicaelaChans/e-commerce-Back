@@ -8,8 +8,7 @@ const productController = {
 
   create: async (req, res) => {
     try {
-      const { name, description, image, stock, price, category, rating } =
-        req.body;
+      const { name, description, image, stock, price, category, rating, otherProperties} = req.body;
       const product = new Product({
         name,
         description,
@@ -18,6 +17,7 @@ const productController = {
         price,
         rating,
         category,
+        otherProperties,
         orders: [],
       });
       await product.save();

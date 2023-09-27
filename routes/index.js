@@ -13,7 +13,7 @@ function routes(app) {
   app.use("/products", productRoutes);
   app.use("/admins", adminRoutes);
   app.use("/orders", orderRoutes);
-  app.use("/categories", categoryRoutes);
+  app.use("/categorys", categoryRoutes);
 }
 
 module.exports = routes;
