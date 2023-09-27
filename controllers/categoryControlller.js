@@ -8,11 +8,11 @@ const categoryController = {
 
   create: async (req, res) => {
     try {
-      const { name, description, image } = req.body;
+      const { name, image, products } = req.body;
       const category = new Category({
         name,
-        description,
         image,
+        products,
       });
       await category.save();
       return res.json(category);
