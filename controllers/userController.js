@@ -3,8 +3,13 @@ const Order = require("../models/Order");
 
 const userController = {
   index: async (req, res) => {
-    const user = await User.find().populate("orders");
-    return res.send(user);
+    try {
+      const users = await User.find().populate("orders");
+      return res.json(users);
+    } catch (error) {
+      console.error("Error in userController.index:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
   },
 
   show: async (req, res) => {
@@ -33,10 +38,9 @@ const userController = {
   },
 
   update: async (req, res) => {
+    const userId = req.params.id;
+    const updatedUserData = req.body;
     try {
-      const userId = req.params.id;
-      const updatedUserData = req.body;
-
       const updatedUser = await User.findByIdAndUpdate(
         userId,
         updatedUserData,
@@ -56,8 +60,8 @@ const userController = {
   },
 
   destroy: async (req, res) => {
+    const userId = req.params.id;
     try {
-      const userId = req.params.id;
       await User.findByIdAndRemove(userId);
       return res.json("User deleted successfully");
     } catch (error) {
