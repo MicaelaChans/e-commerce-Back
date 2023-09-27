@@ -6,17 +6,17 @@ async function categorySeeders() {
 
   const categories = [];
   const wood = new Category({
-    name: "wood",
+    name: "Wood Stoves",
   });
 
   categories.push(wood);
   const pellets = new Category({
-    name: "pellet",
+    name: "Pellet Stoves",
   });
 
   categories.push(pellets);
   const accesories = new Category({
-    name: "accessories",
+    name: "Accessories",
   });
 
   categories.push(accesories);
