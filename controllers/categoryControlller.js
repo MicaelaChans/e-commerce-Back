@@ -11,6 +11,22 @@ const categoryController = {
     }
   },
 
+  create: async (req, res) => {
+    try {
+      const { name, description, image } = req.body;
+      const category = new Category({
+        name,
+        description,
+        image,
+      });
+      await category.save();
+      return res.json(category);
+    } catch (error) {
+      console.log("Error creating category", error);
+      return res.status(500).json({ error: "Error creating category" });
+    }
+  },
+
   show: async (req, res) => {
     try {
       const categoryId = req.params.id;
