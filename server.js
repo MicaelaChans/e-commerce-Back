@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 routes(app);
 
-//productSeeder();
+productSeeder();
 //adminSeeder();
 
 app.listen(port, () => console.log("Listening on: http://localhost:" + port));
